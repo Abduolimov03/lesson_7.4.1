@@ -8,6 +8,12 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework import mixins
+from rest_framework import viewsets
+
+### viewsets
+class WatchApi(viewsets.ModelViewSet):
+    queryset = Watch.objects.all()
+    serializer_class = WatchSerializer
 
 ### genericAPIView
 # class ListCreateApi(GenericAPIView):
