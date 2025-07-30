@@ -77,5 +77,30 @@ from rest_framework import mixins
 
 ### mixins
 
+class ListCreateApi(mixins.ListModelMixin, mixins.CreateModelMixin, GenericAPIView):
+    queryset = Watch.objects.all()
+    serializer_class = WatchSerializer
 
+    def get(self, request):
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class DetailDeleteUpdateApi(mixins.DestroyModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, GenericAPIView):
+    queryset = Watch.objects.all()
+    serializer_class = WatchSerializer
+
+    def get(self, request, pk):
+        return self.retrieve(request, id=pk)
+
+    def delete(self, request, pk):
+        return self.destroy(request, id=pk)
+
+    def put(self, request, pk):
+        return self.update(request, id=pk)
+
+    def patch(self, request, pk):
+        return self.update(request, id=pk)
 
